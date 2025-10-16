@@ -21,8 +21,6 @@ import Contact from "./pages/Contact";
 import BecomeMember from "./pages/BecomeMember";
 import BeginnersGuide from "./pages/BeginnersGuide";
 import NotFound from "./pages/NotFound";
-import AdminAuth from "./pages/admin/Auth";
-import BlogAdmin from "./pages/admin/BlogAdmin";
 
 const queryClient = new QueryClient();
 
@@ -51,8 +49,6 @@ const App = () => (
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/become-member" element={<BecomeMember />} />
                 <Route path="/beginners-guide" element={<BeginnersGuide />} />
-                <Route path="/admin/auth" element={<AdminAuth />} />
-                <Route path="/admin/blog" element={<BlogAdmin />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
