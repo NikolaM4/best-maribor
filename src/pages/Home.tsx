@@ -1,12 +1,46 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, BookOpen, Briefcase, Globe, Calendar, Award, ArrowRight, MapPin, GraduationCap } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { supabase } from '@/integrations/supabase/client';
+import { format } from 'date-fns';
 import mariborHero from '@/assets/maribor-hero.jpg';
 
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  cover_image: string | null;
+  published_at: string;
+}
+
 const Home = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    fetchRecentPosts();
+  }, [language]);
+
+  const fetchRecentPosts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('id, title, slug, excerpt, cover_image, published_at')
+        .eq('is_published', true)
+        .eq('language', language)
+        .order('published_at', { ascending: false })
+        .limit(3);
+
+      if (error) throw error;
+      setRecentPosts(data || []);
+    } catch (error) {
+      console.error('Error fetching recent posts:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -47,18 +81,16 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">About BEST Maribor</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('home.about.title')}</h2>
               <p className="text-lg text-muted-foreground mb-4">
-                We are a dynamic student organization at the University of Maribor, part of the BEST network 
-                connecting over 3,000 students across 93 universities in 33 countries.
+                {t('home.about.p1')}
               </p>
               <p className="text-lg text-muted-foreground mb-6">
-                Through academic courses, career events, and international exchanges, we help students develop 
-                both technical and soft skills while building lasting connections across Europe.
+                {t('home.about.p2')}
               </p>
               <Link to="/about/best">
                 <Button size="lg" className="group">
-                  Learn More About BEST
+                  {t('home.about.learnMore')}
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
@@ -70,7 +102,7 @@ const Home = () => {
                     <Users className="h-6 w-6 text-primary" />
                   </div>
                   <CardTitle className="text-3xl font-bold">3000+</CardTitle>
-                  <CardDescription>Active Members</CardDescription>
+                  <CardDescription>{t('home.stats.members')}</CardDescription>
                 </CardHeader>
               </Card>
               <Card className="text-center hover-scale">
@@ -79,7 +111,7 @@ const Home = () => {
                     <Globe className="h-6 w-6 text-secondary" />
                   </div>
                   <CardTitle className="text-3xl font-bold">93</CardTitle>
-                  <CardDescription>Local Groups</CardDescription>
+                  <CardDescription>{t('home.stats.groups')}</CardDescription>
                 </CardHeader>
               </Card>
               <Card className="text-center hover-scale">
@@ -88,7 +120,7 @@ const Home = () => {
                     <MapPin className="h-6 w-6 text-accent" />
                   </div>
                   <CardTitle className="text-3xl font-bold">33</CardTitle>
-                  <CardDescription>Countries</CardDescription>
+                  <CardDescription>{t('home.stats.countries')}</CardDescription>
                 </CardHeader>
               </Card>
               <Card className="text-center hover-scale">
@@ -97,7 +129,7 @@ const Home = () => {
                     <GraduationCap className="h-6 w-6 text-primary" />
                   </div>
                   <CardTitle className="text-3xl font-bold">35+</CardTitle>
-                  <CardDescription>Years Active</CardDescription>
+                  <CardDescription>{t('home.stats.years')}</CardDescription>
                 </CardHeader>
               </Card>
             </div>
@@ -109,9 +141,9 @@ const Home = () => {
       <section className="py-20 bg-surface-subtle">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Do</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.whatWeDo.title')}</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              BEST connects students, companies, and universities across Europe through various programs and events
+              {t('home.whatWeDo.subtitle')}
             </p>
           </div>
 
@@ -121,15 +153,15 @@ const Home = () => {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <BookOpen className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle>Academic Courses</CardTitle>
+                <CardTitle>{t('home.features.courses')}</CardTitle>
                 <CardDescription>
-                  Hands-on technical courses taught by industry professionals and academics
+                  {t('home.features.coursesDesc')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link to="/events/courses">
                   <Button variant="link" className="px-0 story-link">
-                    Learn more →
+                    {t('common.learnMore')} →
                   </Button>
                 </Link>
               </CardContent>
@@ -140,15 +172,15 @@ const Home = () => {
                 <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
                   <Globe className="h-6 w-6 text-secondary" />
                 </div>
-                <CardTitle>Study Exchange</CardTitle>
+                <CardTitle>{t('home.features.exchange')}</CardTitle>
                 <CardDescription>
-                  Spend time at partner universities across Europe with BEST Study Exchange
+                  {t('home.features.exchangeDesc')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link to="/events/bse">
                   <Button variant="link" className="px-0 story-link">
-                    Explore BSE →
+                    {t('common.exploreBse')} →
                   </Button>
                 </Link>
               </CardContent>
@@ -159,15 +191,15 @@ const Home = () => {
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
                   <Briefcase className="h-6 w-6 text-accent" />
                 </div>
-                <CardTitle>Career Development</CardTitle>
+                <CardTitle>{t('home.features.career')}</CardTitle>
                 <CardDescription>
-                  Connect with leading companies through career fairs and networking events
+                  {t('home.features.careerDesc')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link to="/events/technical-days">
                   <Button variant="link" className="px-0 story-link">
-                    View events →
+                    {t('common.viewEvents')} →
                   </Button>
                 </Link>
               </CardContent>
@@ -178,15 +210,15 @@ const Home = () => {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <Calendar className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle>Hackathons</CardTitle>
+                <CardTitle>{t('home.features.hackathons')}</CardTitle>
                 <CardDescription>
-                  Participate in coding competitions and innovation challenges
+                  {t('home.features.hackathonsDesc')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link to="/events/hackathons">
                   <Button variant="link" className="px-0 story-link">
-                    Join hackathon →
+                    {t('common.joinHackathon')} →
                   </Button>
                 </Link>
               </CardContent>
@@ -197,15 +229,15 @@ const Home = () => {
                 <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
                   <Users className="h-6 w-6 text-secondary" />
                 </div>
-                <CardTitle>Community</CardTitle>
+                <CardTitle>{t('home.features.community')}</CardTitle>
                 <CardDescription>
-                  Join a network of over 3,000 students from 93 universities
+                  {t('home.features.communityDesc')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link to="/become-member">
                   <Button variant="link" className="px-0 story-link">
-                    Become a member →
+                    {t('common.becomeMember')} →
                   </Button>
                 </Link>
               </CardContent>
@@ -216,15 +248,15 @@ const Home = () => {
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
                   <Award className="h-6 w-6 text-accent" />
                 </div>
-                <CardTitle>Leadership Skills</CardTitle>
+                <CardTitle>{t('home.features.leadership')}</CardTitle>
                 <CardDescription>
-                  Develop soft skills through organizing events and managing projects
+                  {t('home.features.leadershipDesc')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link to="/about/best">
                   <Button variant="link" className="px-0 story-link">
-                    Read more →
+                    {t('common.readMore')} →
                   </Button>
                 </Link>
               </CardContent>
@@ -233,25 +265,84 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Recent News Section */}
+      {recentPosts.length > 0 && (
+        <section className="py-20 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.recentNews.title')}</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                {t('home.recentNews.subtitle')}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {recentPosts.map((post) => (
+                <Link key={post.id} to={`/news/${post.slug}`}>
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 hover-scale group">
+                    {post.cover_image && (
+                      <div className="overflow-hidden">
+                        <img
+                          src={post.cover_image}
+                          alt={post.title}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
+                    <CardHeader>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                        <Calendar className="h-4 w-4" />
+                        {format(new Date(post.published_at), 'MMM d, yyyy')}
+                      </div>
+                      <CardTitle className="group-hover:text-primary transition-colors line-clamp-2">
+                        {post.title}
+                      </CardTitle>
+                      {post.excerpt && (
+                        <CardDescription className="line-clamp-3">
+                          {post.excerpt}
+                        </CardDescription>
+                      )}
+                    </CardHeader>
+                    <CardContent>
+                      <span className="text-primary story-link text-sm font-medium">
+                        {t('home.recentNews.readMore')} →
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <Link to="/news">
+                <Button size="lg" variant="outline">
+                  {t('home.recentNews.viewAll')}
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Why Join Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-surface-subtle">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Join BEST Maribor?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.whyJoin.title')}</h2>
               <p className="text-lg text-muted-foreground">
-                Unlock opportunities for personal growth, professional development, and international networking
+                {t('home.whyJoin.subtitle')}
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                { title: 'International Network', desc: 'Connect with students from 93 universities across Europe' },
-                { title: 'Career Opportunities', desc: 'Direct access to leading companies and job opportunities' },
-                { title: 'Skill Development', desc: 'Develop both technical and soft skills through events and projects' },
-                { title: 'Travel Europe', desc: 'Participate in study exchanges and international events' },
-                { title: 'Free Workshops', desc: 'Access to free training sessions and professional courses' },
-                { title: 'Leadership Experience', desc: 'Gain valuable experience by organizing and managing events' },
+                { title: t('home.whyJoin.network'), desc: t('home.whyJoin.networkDesc') },
+                { title: t('home.whyJoin.career'), desc: t('home.whyJoin.careerDesc') },
+                { title: t('home.whyJoin.skills'), desc: t('home.whyJoin.skillsDesc') },
+                { title: t('home.whyJoin.travel'), desc: t('home.whyJoin.travelDesc') },
+                { title: t('home.whyJoin.workshops'), desc: t('home.whyJoin.workshopsDesc') },
+                { title: t('home.whyJoin.leadershipExp'), desc: t('home.whyJoin.leadershipExpDesc') },
               ].map((item, index) => (
                 <Card key={index} className="hover-scale">
                   <CardHeader>
@@ -265,7 +356,7 @@ const Home = () => {
             <div className="text-center mt-12">
               <Link to="/become-member">
                 <Button size="lg" className="text-lg px-8">
-                  Join BEST Maribor Today
+                  {t('home.whyJoin.cta')}
                 </Button>
               </Link>
             </div>
@@ -277,14 +368,14 @@ const Home = () => {
       <section className="py-20 bg-gradient-to-r from-primary via-secondary to-accent">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Start Your Journey?
+            {t('home.cta.title')}
           </h2>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Join BEST Maribor and become part of Europe's leading student organization
+            {t('home.cta.subtitle')}
           </p>
           <Link to="/become-member">
             <Button size="lg" variant="secondary" className="text-lg px-8 bg-white text-primary hover:bg-white/90">
-              Apply Now
+              {t('home.cta.button')}
             </Button>
           </Link>
         </div>
