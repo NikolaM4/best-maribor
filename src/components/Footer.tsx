@@ -54,7 +54,7 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/gallery" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/events/gallery" className="text-muted-foreground hover:text-foreground transition-colors">
                   {t('nav.gallery')}
                 </Link>
               </li>

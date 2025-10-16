@@ -79,7 +79,7 @@ export const Navigation = () => {
                 {t('nav.news')}
               </Button>
             </Link>
-            <Link to="/gallery">
+            <Link to="/events/gallery">
               <Button variant="ghost" className="text-sm font-medium">
                 {t('nav.gallery')}
               </Button>
@@ -195,7 +195,7 @@ export const Navigation = () => {
                 {t('nav.news')}
               </Button>
             </Link>
-            <Link to="/gallery" onClick={() => setIsOpen(false)}>
+            <Link to="/events/gallery" onClick={() => setIsOpen(false)}>
               <Button variant="ghost" className="w-full justify-start">
                 {t('nav.gallery')}
               </Button>

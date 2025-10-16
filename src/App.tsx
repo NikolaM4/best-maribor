@@ -14,10 +14,11 @@ import BSE from "./pages/events/BSE";
 import TechnicalDays from "./pages/events/TechnicalDays";
 import Hackathons from "./pages/events/Hackathons";
 import OtherEvents from "./pages/events/OtherEvents";
+import EventGallery from "./pages/events/EventGallery";
 import News from "./pages/News";
+import NewsPost from "./pages/NewsPost";
 import Contact from "./pages/Contact";
 import BecomeMember from "./pages/BecomeMember";
-import Gallery from "./pages/Gallery";
 import BeginnersGuide from "./pages/BeginnersGuide";
 import NotFound from "./pages/NotFound";
 
@@ -42,10 +43,11 @@ const App = () => (
                 <Route path="/events/technical-days" element={<TechnicalDays />} />
                 <Route path="/events/hackathons" element={<Hackathons />} />
                 <Route path="/events/other" element={<OtherEvents />} />
+                <Route path="/events/gallery" element={<EventGallery />} />
                 <Route path="/news" element={<News />} />
+                <Route path="/news/:slug" element={<NewsPost />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/become-member" element={<BecomeMember />} />
-                <Route path="/gallery" element={<Gallery />} />
                 <Route path="/beginners-guide" element={<BeginnersGuide />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
