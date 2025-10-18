@@ -80,40 +80,68 @@ const NewsPost = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="max-w-3xl mx-auto">
-        <Link to="/news">
-          <Button variant="ghost" className="mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to News
-          </Button>
-        </Link>
+    <div className="min-h-screen">
+      {/* Header with Back Button */}
+      <div className="border-b bg-surface-subtle">
+        <div className="container mx-auto px-4 py-4">
+          <Link to="/news">
+            <Button variant="ghost" className="hover:bg-background">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to News
+            </Button>
+          </Link>
+        </div>
+      </div>
 
-        <article>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
-          
-          <div className="flex items-center gap-4 text-muted-foreground mb-8">
-            <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              {format(new Date(post.published_at), 'MMMM d, yyyy')}
+      <article className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto">
+          {/* Article Header */}
+          <header className="mb-12">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              {post.title}
+            </h1>
+            
+            <div className="flex flex-wrap items-center gap-6 text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-5 w-5" />
+                <time>{format(new Date(post.published_at), 'MMMM d, yyyy')}</time>
+              </div>
+              {post.author && (
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-primary font-semibold text-sm">
+                      {post.author.charAt(0)}
+                    </span>
+                  </div>
+                  <span className="font-medium">{post.author}</span>
+                </div>
+              )}
             </div>
-            {post.author && <span>By {post.author}</span>}
-          </div>
+          </header>
 
+          {/* Featured Image */}
           {post.cover_image && (
-            <img
-              src={post.cover_image}
-              alt={post.title}
-              className="w-full rounded-lg mb-8 shadow-lg"
-            />
+            <div className="mb-12 rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={post.cover_image}
+                alt={post.title}
+                className="w-full h-auto object-cover"
+              />
+            </div>
           )}
 
+          {/* Article Content */}
           <div 
-            className="prose prose-lg max-w-none"
+            className="prose prose-lg prose-headings:font-bold prose-a:text-primary prose-img:rounded-xl prose-img:shadow-lg max-w-none
+                       dark:prose-invert
+                       prose-p:text-foreground prose-p:leading-relaxed
+                       prose-headings:text-foreground
+                       prose-strong:text-foreground
+                       prose-code:text-primary"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
-        </article>
-      </div>
+        </div>
+      </article>
     </div>
   );
 };
