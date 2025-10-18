@@ -5,23 +5,33 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const GradientTextSection = () => {
-  const textRef = useRef<HTMLDivElement>(null);
-  const maskRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (!textRef.current || !maskRef.current || !sectionRef.current) return;
+    if (!containerRef.current || !sectionRef.current) return;
 
-    gsap.to(maskRef.current, {
-      clipPath: 'inset(0% 0% 0% 0%)',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top 60%',
-        end: 'bottom 20%',
-        scrub: 1,
+    const letters = containerRef.current.querySelectorAll('.letter');
+
+    gsap.fromTo(
+      letters,
+      {
+        opacity: 0.3,
+        color: '#6b7280',
       },
-    });
+      {
+        opacity: 1,
+        color: '#ffffff',
+        stagger: 0.02,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 60%',
+          end: 'bottom 20%',
+          scrub: 1,
+        },
+      }
+    );
   }, []);
 
   const text = "Were you ever interested in technology, innovation, and building connections across Europe? Do you dream of developing your skills through hands-on projects, meeting industry professionals, and traveling to international events? Are you passionate about making a difference in the student community while growing as a leader? Then you are in the right place. BEST offers you the platform to transform your university experience into something extraordinary.";
@@ -36,23 +46,19 @@ const GradientTextSection = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="relative">
-            {/* Gray text layer */}
-            <div
-              ref={textRef}
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-500 leading-relaxed text-center"
-            >
-              {text}
-            </div>
-            
-            {/* White text layer with mask */}
-            <div
-              ref={maskRef}
-              className="absolute inset-0 text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-relaxed text-center"
-              style={{ clipPath: 'inset(0% 0% 100% 0%)' }}
-            >
-              {text}
-            </div>
+          <div
+            ref={containerRef}
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-relaxed text-center"
+          >
+            {text.split('').map((char, index) => (
+              <span
+                key={index}
+                className="letter inline-block"
+                style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </span>
+            ))}
           </div>
         </div>
       </div>

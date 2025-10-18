@@ -1,9 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
 
 const EventGallery = () => {
   // Placeholder event images - replace with real event photos
@@ -27,33 +26,25 @@ const EventGallery = () => {
         </div>
 
         <Swiper
-          modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-          effect="coverflow"
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView="auto"
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView={1}
+          loop={true}
           navigation
           pagination={{ clickable: true }}
           autoplay={{
             delay: 3500,
             disableOnInteraction: false,
           }}
-          className="event-gallery-swiper pb-12"
-          style={{
-            paddingTop: '2rem',
-            paddingBottom: '4rem',
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
           }}
+          className="event-gallery-swiper pb-12"
         >
           {eventImages.map((image, index) => (
-            <SwiperSlide key={index} style={{ width: '400px', maxWidth: '90vw' }}>
-              <div className="rounded-xl overflow-hidden shadow-2xl">
+            <SwiperSlide key={index}>
+              <div className="rounded-xl overflow-hidden shadow-lg">
                 <img
                   src={image.url}
                   alt={image.alt}
