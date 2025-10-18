@@ -281,7 +281,7 @@ const Home = () => {
 
       {/* Recent News Section */}
       {recentPosts.length > 0 && (
-        <section ref={newsRef} className="py-20 bg-background scroll-reveal">
+        <section ref={newsRef} className="py-20 bg-surface-subtle scroll-reveal">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("home.recentNews.title")}</h2>
@@ -291,13 +291,13 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {recentPosts.map((post) => (
                 <Link key={post.id} to={`/news/${post.slug}`}>
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 hover-scale group">
+                  <Card className="h-full bg-card border hover:shadow-lg transition-all duration-300 hover-scale group overflow-hidden">
                     {post.cover_image && (
-                      <div className="overflow-hidden">
+                      <div className="overflow-hidden h-48">
                         <img
                           src={post.cover_image}
                           alt={post.title}
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>
                     )}
