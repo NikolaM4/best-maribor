@@ -8,6 +8,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import mariborHero from "@/assets/maribor-hero.jpg";
 import GradientTextSection from "@/components/GradientTextSection";
+import PartnersCarousel from "@/components/PartnersCarousel";
+import EventGallery from "@/components/EventGallery";
+import TeamSection from "@/components/TeamSection";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
@@ -152,6 +155,15 @@ const Home = () => {
 
       {/* Gradient Text Section */}
       <GradientTextSection />
+
+      {/* Partners Carousel */}
+      <PartnersCarousel />
+
+      {/* Event Gallery */}
+      <EventGallery />
+
+      {/* Team Section */}
+      <TeamSection />
 
       {/* Features Section */}
       <section ref={featuresRef} className="py-20 bg-surface-subtle scroll-reveal">
