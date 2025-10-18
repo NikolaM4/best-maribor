@@ -1,7 +1,13 @@
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 const AboutBest = () => {
+  const heroRef = useScrollReveal();
+  
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-6">About BEST</h1>
+      <div ref={heroRef} className="scroll-reveal">
+        <h1 className="text-4xl font-bold mb-6">About BEST</h1>
+      </div>
       <div className="prose max-w-none">
         <p className="text-lg text-muted-foreground mb-6">
           BEST (Board of European Students of Technology) is a constantly growing non-profit and non-political

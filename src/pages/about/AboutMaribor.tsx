@@ -1,7 +1,13 @@
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 const AboutMaribor = () => {
+  const heroRef = useScrollReveal();
+  
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-6">About BEST Maribor</h1>
+      <div ref={heroRef} className="scroll-reveal">
+        <h1 className="text-4xl font-bold mb-6">About BEST Maribor</h1>
+      </div>
       <div className="prose max-w-none">
         <p className="text-lg text-muted-foreground mb-6">
           BEST Maribor is the local group representing the University of Maribor in the BEST network. 

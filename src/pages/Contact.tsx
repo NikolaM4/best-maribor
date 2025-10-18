@@ -3,8 +3,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const Contact = () => {
+  const heroRef = useScrollReveal();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Implement form submission
@@ -13,10 +15,12 @@ const Contact = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
-        <p className="text-lg text-muted-foreground mb-8">
-          Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-        </p>
+        <div ref={heroRef} className="scroll-reveal">
+          <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
+          <p className="text-lg text-muted-foreground mb-8">
+            Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <Card>

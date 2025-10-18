@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Calendar } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { format } from 'date-fns';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 interface BlogPost {
   id: string;
@@ -22,6 +23,7 @@ const News = () => {
   const { language } = useLanguage();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const heroRef = useScrollReveal();
 
   useEffect(() => {
     fetchPosts();
@@ -67,10 +69,12 @@ const News = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-6">News & Blog</h1>
-      <p className="text-lg text-muted-foreground mb-8">
-        Stay updated with the latest news and announcements from BEST Maribor.
-      </p>
+      <div ref={heroRef} className="scroll-reveal">
+        <h1 className="text-4xl font-bold mb-6">News & Blog</h1>
+        <p className="text-lg text-muted-foreground mb-8">
+          Stay updated with the latest news and announcements from BEST Maribor.
+        </p>
+      </div>
 
       {posts.length === 0 ? (
         <div className="text-center py-12">

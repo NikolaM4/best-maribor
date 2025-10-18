@@ -7,6 +7,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import mariborHero from "@/assets/maribor-hero.jpg";
+import GradientTextSection from "@/components/GradientTextSection";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 interface BlogPost {
   id: string;
@@ -20,6 +26,13 @@ interface BlogPost {
 const Home = () => {
   const { t, language } = useLanguage();
   const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
+  
+  const aboutRef = useScrollReveal();
+  const statsRef = useScrollReveal();
+  const featuresRef = useScrollReveal();
+  const newsRef = useScrollReveal();
+  const whyJoinRef = useScrollReveal();
+  const ctaRef = useScrollReveal();
 
   useEffect(() => {
     fetchRecentPosts();
@@ -81,7 +94,7 @@ const Home = () => {
       </section>
 
       {/* About Us Short Section */}
-      <section className="py-16 bg-background">
+      <section ref={aboutRef} className="py-16 bg-background scroll-reveal">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -95,7 +108,7 @@ const Home = () => {
                 </Button>
               </Link>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div ref={statsRef} className="grid grid-cols-2 gap-4 scroll-reveal-scale">
               <Card className="text-center hover-scale">
                 <CardHeader>
                   <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
@@ -137,8 +150,11 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Gradient Text Section */}
+      <GradientTextSection />
+
       {/* Features Section */}
-      <section className="py-20 bg-surface-subtle">
+      <section ref={featuresRef} className="py-20 bg-surface-subtle scroll-reveal">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("home.whatWeDo.title")}</h2>
@@ -253,7 +269,7 @@ const Home = () => {
 
       {/* Recent News Section */}
       {recentPosts.length > 0 && (
-        <section className="py-20 bg-background">
+        <section ref={newsRef} className="py-20 bg-background scroll-reveal">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("home.recentNews.title")}</h2>
@@ -305,15 +321,26 @@ const Home = () => {
       )}
 
       {/* Why Join Section */}
-      <section className="py-20 bg-surface-subtle">
+      <section ref={whyJoinRef} className="py-20 bg-surface-subtle scroll-reveal">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("home.whyJoin.title")}</h2>
               <p className="text-lg text-muted-foreground">{t("home.whyJoin.subtitle")}</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              spaceBetween={24}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              className="pb-12"
+            >
               {[
                 { title: t("home.whyJoin.network"), desc: t("home.whyJoin.networkDesc") },
                 { title: t("home.whyJoin.career"), desc: t("home.whyJoin.careerDesc") },
@@ -322,14 +349,16 @@ const Home = () => {
                 { title: t("home.whyJoin.workshops"), desc: t("home.whyJoin.workshopsDesc") },
                 { title: t("home.whyJoin.leadershipExp"), desc: t("home.whyJoin.leadershipExpDesc") },
               ].map((item, index) => (
-                <Card key={index} className="hover-scale">
-                  <CardHeader>
-                    <CardTitle className="text-lg">{item.title}</CardTitle>
-                    <CardDescription>{item.desc}</CardDescription>
-                  </CardHeader>
-                </Card>
+                <SwiperSlide key={index}>
+                  <Card className="hover-scale h-full">
+                    <CardHeader>
+                      <CardTitle className="text-lg">{item.title}</CardTitle>
+                      <CardDescription>{item.desc}</CardDescription>
+                    </CardHeader>
+                  </Card>
+                </SwiperSlide>
               ))}
-            </div>
+            </Swiper>
 
             <div className="text-center mt-12">
               <Link to="/become-member">
@@ -343,7 +372,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary via-secondary to-accent">
+      <section ref={ctaRef} className="py-20 bg-gradient-to-r from-primary via-secondary to-accent scroll-reveal-scale">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{t("home.cta.title")}</h2>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">{t("home.cta.subtitle")}</p>

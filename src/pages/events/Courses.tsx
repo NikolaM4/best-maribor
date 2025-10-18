@@ -3,8 +3,10 @@ import { Button } from '@/components/ui/button';
 import courseRobotics from '@/assets/course-robotics.jpg';
 import courseCoding from '@/assets/course-coding.jpg';
 import courseEnergy from '@/assets/course-energy.jpg';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const Courses = () => {
+  const heroRef = useScrollReveal();
   const courses = [
     {
       title: 'Robotics & Automation',
@@ -31,7 +33,9 @@ const Courses = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-6">Academic Courses</h1>
+      <div ref={heroRef} className="scroll-reveal">
+        <h1 className="text-4xl font-bold mb-6">Academic Courses</h1>
+      </div>
       <div className="prose max-w-none mb-12">
         <p className="text-lg text-muted-foreground mb-6">
           BEST courses are hands-on technical training events where students learn from industry professionals 

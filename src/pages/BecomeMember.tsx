@@ -1,11 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Check } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const BecomeMember = () => {
+  const heroRef = useScrollReveal();
+  
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="max-w-4xl mx-auto">
+      <div ref={heroRef} className="max-w-4xl mx-auto scroll-reveal">
         <h1 className="text-4xl font-bold mb-6">Become a Member</h1>
         <p className="text-lg text-muted-foreground mb-8">
           Join BEST Maribor and unlock opportunities for personal growth, professional development, 

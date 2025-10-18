@@ -1,7 +1,13 @@
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 const TechnicalDays = () => {
+  const heroRef = useScrollReveal();
+  
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-6">Technical Days</h1>
+      <div ref={heroRef} className="scroll-reveal">
+        <h1 className="text-4xl font-bold mb-6">Technical Days</h1>
+      </div>
       <div className="prose max-w-none">
         <p className="text-lg text-muted-foreground mb-6">
           Technical Days are career-focused events where students meet companies and learn about job 

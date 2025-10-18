@@ -1,7 +1,13 @@
+import { useScrollReveal } from '@/hooks/useScrollReveal';
+
 const BSE = () => {
+  const heroRef = useScrollReveal();
+  
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-6">BEST Study Exchange (BSE)</h1>
+      <div ref={heroRef} className="scroll-reveal">
+        <h1 className="text-4xl font-bold mb-6">BEST Study Exchange (BSE)</h1>
+      </div>
       <div className="prose max-w-none">
         <p className="text-lg text-muted-foreground mb-6">
           BEST Study Exchange is a unique opportunity for students to spend time at partner universities across Europe.
