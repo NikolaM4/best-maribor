@@ -26,18 +26,15 @@ const EventGallery = () => {
         </div>
 
         <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
+          modules={[Navigation, Pagination]}
           spaceBetween={30}
-          slidesPerView={1}
-          loop={true}
+          slidesPerView={3}
+          loop={false}
           navigation
           pagination={{ clickable: true }}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-          }}
           breakpoints={{
-            640: { slidesPerView: 2 },
+            320: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
           className="event-gallery-swiper pb-12"
