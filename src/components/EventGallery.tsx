@@ -29,7 +29,7 @@ const EventGallery = () => {
           modules={[Navigation, Pagination]}
           spaceBetween={30}
           slidesPerView={3}
-          loop={false}
+          loop={true}
           navigation
           pagination={{ clickable: true }}
           breakpoints={{
