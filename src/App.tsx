@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { StaggeredMenu } from "./components/reactbits/StaggeredMenu";
-import { Home, Info, Calendar, Mail, UserPlus, Book, GraduationCap } from "lucide-react";
+
 import { Footer } from "./components/Footer";
 import HomePage from "./pages/Home";
 import AboutBest from "./pages/about/AboutBest";
@@ -28,10 +28,9 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const dockItems = [
-  { title: "Home", icon: Home, href: "/" },
+  { title: "Home", href: "/" },
   { 
     title: "About", 
-    icon: Info, 
     subItems: [
       { title: "About BEST", href: "/about/best" },
       { title: "About Maribor", href: "/about/maribor" },
@@ -39,7 +38,6 @@ const dockItems = [
   },
   { 
     title: "Events", 
-    icon: Calendar, 
     subItems: [
       { title: "Courses", href: "/events/courses" },
       { title: "BSE", href: "/events/bse" },
@@ -49,10 +47,10 @@ const dockItems = [
       { title: "Gallery", href: "/events/gallery" },
     ]
   },
-  { title: "News", icon: Book, href: "/news" },
-  { title: "Contact", icon: Mail, href: "/contact" },
-  { title: "Become Member", icon: UserPlus, href: "/become-member" },
-  { title: "Beginners Guide", icon: GraduationCap, href: "/beginners-guide" },
+  { title: "News", href: "/news" },
+  { title: "Contact", href: "/contact" },
+  { title: "Become Member", href: "/become-member", isCTA: true },
+  { title: "Beginners Guide", href: "/beginners-guide", isCTA: true },
 ];
 
 const App = () => (

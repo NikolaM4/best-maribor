@@ -16,9 +16,10 @@ interface SubMenuItem {
 
 interface MenuItem {
   title: string;
-  icon: LucideIcon;
+  icon?: LucideIcon;
   href?: string;
   subItems?: SubMenuItem[];
+  isCTA?: boolean;
 }
 
 interface StaggeredMenuProps {
@@ -119,35 +120,30 @@ export const StaggeredMenu = ({ items }: StaggeredMenuProps) => {
               
               return (
                 <motion.div key={item.title} variants={itemVariants}>
-                  {item.subItems ? (
+                  {item.isCTA ? (
+                    <Link
+                      to={item.href!}
+                      onClick={() => setIsOpen(false)}
+                      className="group relative overflow-hidden px-8 py-4 rounded-2xl font-semibold text-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 text-center"
+                    >
+                      <span className="relative z-10">{item.title}</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </Link>
+                  ) : item.subItems ? (
                     <Collapsible>
                       <CollapsibleTrigger className="w-full">
                         <div
-                          className={`group flex items-center gap-6 p-4 rounded-2xl transition-all ${
+                          className={`group flex items-center justify-between p-4 rounded-2xl transition-all ${
                             isActive
-                              ? "bg-primary text-primary-foreground"
+                              ? "bg-accent/20 text-foreground"
                               : "hover:bg-accent/10"
                           }`}
                         >
-                          <div
-                            className={`flex items-center justify-center w-12 h-12 rounded-xl ${
-                              isActive
-                                ? "bg-primary-foreground/20"
-                                : "bg-accent/20 group-hover:bg-primary/20"
-                            } transition-colors`}
-                          >
-                            <Icon className="h-6 w-6" />
-                          </div>
-                          <div className="flex flex-col flex-1 text-left">
-                            <span className="text-2xl font-semibold">{item.title}</span>
-                            <span className="text-xs text-muted-foreground">
-                              {String(index + 1).padStart(2, "0")}
-                            </span>
-                          </div>
+                          <span className="text-xl font-semibold">{item.title}</span>
                           <ChevronDown className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                         </div>
                       </CollapsibleTrigger>
-                      <CollapsibleContent className="pl-[72px] mt-2 space-y-2">
+                      <CollapsibleContent className="pl-6 mt-2 space-y-2">
                         {item.subItems.map((subItem) => {
                           const isSubActive = location.pathname === subItem.href;
                           return (
@@ -171,27 +167,13 @@ export const StaggeredMenu = ({ items }: StaggeredMenuProps) => {
                     <Link
                       to={item.href!}
                       onClick={() => setIsOpen(false)}
-                      className={`group flex items-center gap-6 p-4 rounded-2xl transition-all ${
+                      className={`group block p-4 rounded-2xl transition-all ${
                         isActive
-                          ? "bg-primary text-primary-foreground"
+                          ? "bg-accent/20 text-foreground"
                           : "hover:bg-accent/10"
                       }`}
                     >
-                      <div
-                        className={`flex items-center justify-center w-12 h-12 rounded-xl ${
-                          isActive
-                            ? "bg-primary-foreground/20"
-                            : "bg-accent/20 group-hover:bg-primary/20"
-                        } transition-colors`}
-                      >
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-2xl font-semibold">{item.title}</span>
-                        <span className="text-xs text-muted-foreground">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                      </div>
+                      <span className="text-xl font-semibold">{item.title}</span>
                     </Link>
                   )}
                 </motion.div>
