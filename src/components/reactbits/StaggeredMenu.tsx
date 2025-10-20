@@ -1,13 +1,16 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { LucideIcon, X, ChevronDown } from "lucide-react";
+import { LucideIcon, X, ChevronDown, Facebook, Instagram, Linkedin, Moon, Sun, Globe } from "lucide-react";
 import { useState, useRef } from "react";
 import { useClickAway } from "react-use";
+import { useTheme } from "@/components/ThemeProvider";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { Button } from "@/components/ui/button";
 
 interface SubMenuItem {
   title: string;
@@ -30,8 +33,16 @@ export const StaggeredMenu = ({ items }: StaggeredMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
   const location = useLocation();
+  const { theme, setTheme } = useTheme();
+  const { language, setLanguage } = useLanguage();
 
   useClickAway(ref, () => setIsOpen(false));
+
+  const socialLinks = [
+    { icon: Facebook, href: "https://facebook.com/bestmaribor", label: "Facebook" },
+    { icon: Instagram, href: "https://instagram.com/bestmaribor", label: "Instagram" },
+    { icon: Linkedin, href: "https://linkedin.com/company/best-maribor", label: "LinkedIn" },
+  ];
 
   const menuVariants = {
     closed: {
@@ -119,12 +130,12 @@ export const StaggeredMenu = ({ items }: StaggeredMenuProps) => {
               const isActive = item.href ? location.pathname === item.href : item.subItems?.some(sub => location.pathname === sub.href);
               
               return (
-                <motion.div key={item.title} variants={itemVariants}>
+                <motion.div key={item.title} variants={itemVariants} className={item.isCTA ? "mt-6" : ""}>
                   {item.isCTA ? (
                     <Link
                       to={item.href!}
                       onClick={() => setIsOpen(false)}
-                      className="group relative overflow-hidden px-8 py-4 rounded-2xl font-semibold text-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 text-center"
+                      className="group relative overflow-hidden px-8 py-4 rounded-2xl font-semibold text-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 text-center block"
                     >
                       <span className="relative z-10">{item.title}</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -181,10 +192,71 @@ export const StaggeredMenu = ({ items }: StaggeredMenuProps) => {
             })}
           </motion.div>
 
-          {/* Decorative Elements */}
+          {/* Theme and Language Toggle */}
           <motion.div
             variants={itemVariants}
-            className="mt-auto pt-8 border-t border-border"
+            className="mt-auto pt-6 space-y-4"
+          >
+            <div className="flex items-center gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                className="flex items-center gap-2"
+              >
+                {theme === "light" ? (
+                  <>
+                    <Moon className="h-4 w-4" />
+                    <span>Dark</span>
+                  </>
+                ) : (
+                  <>
+                    <Sun className="h-4 w-4" />
+                    <span>Light</span>
+                  </>
+                )}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setLanguage(language === "en" ? "sl" : "en")}
+                className="flex items-center gap-2"
+              >
+                <Globe className="h-4 w-4" />
+                <span>{language === "en" ? "SL" : "EN"}</span>
+              </Button>
+            </div>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            variants={itemVariants}
+            className="pt-6 border-t border-border"
+          >
+            <p className="text-sm text-muted-foreground mb-3">Follow us</p>
+            <div className="flex gap-3">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-10 h-10 rounded-full bg-accent/20 hover:bg-primary/20 transition-colors"
+                    aria-label={social.label}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </a>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Footer */}
+          <motion.div
+            variants={itemVariants}
+            className="pt-4"
           >
             <p className="text-sm text-muted-foreground">
               © 2025 BEST Maribor
