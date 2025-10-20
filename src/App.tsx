@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { StaggeredMenu } from "./components/reactbits/StaggeredMenu";
-import { Home, Users, Calendar, Mail, UserPlus, Book } from "lucide-react";
+import { Home, Info, Calendar, Mail, UserPlus, Book, GraduationCap } from "lucide-react";
 import { Footer } from "./components/Footer";
 import HomePage from "./pages/Home";
 import AboutBest from "./pages/about/AboutBest";
@@ -29,7 +29,14 @@ const queryClient = new QueryClient();
 
 const dockItems = [
   { title: "Home", icon: Home, href: "/" },
-  { title: "Team", icon: Users, href: "/team" },
+  { 
+    title: "About", 
+    icon: Info, 
+    subItems: [
+      { title: "About BEST", href: "/about/best" },
+      { title: "About Maribor", href: "/about/maribor" },
+    ]
+  },
   { 
     title: "Events", 
     icon: Calendar, 
@@ -44,7 +51,8 @@ const dockItems = [
   },
   { title: "News", icon: Book, href: "/news" },
   { title: "Contact", icon: Mail, href: "/contact" },
-  { title: "Join", icon: UserPlus, href: "/become-member" },
+  { title: "Become Member", icon: UserPlus, href: "/become-member" },
+  { title: "Beginners Guide", icon: GraduationCap, href: "/beginners-guide" },
 ];
 
 const App = () => (
