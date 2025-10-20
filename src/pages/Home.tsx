@@ -291,7 +291,7 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {recentPosts.map((post) => (
                 <Link key={post.id} to={`/news/${post.slug}`}>
-                  <Card className="h-full bg-card border-2 shadow-md hover:shadow-xl transition-all duration-300 hover-scale group overflow-hidden">
+                  <Card className="h-full bg-card border-2 border-primary/20 shadow-lg hover:shadow-2xl hover:border-primary/40 transition-all duration-300 hover-scale group overflow-hidden">
                     {post.cover_image && (
                       <div className="w-full h-48 overflow-hidden">
                         <img
