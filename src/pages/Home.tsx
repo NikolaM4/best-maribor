@@ -281,23 +281,23 @@ const Home = () => {
 
       {/* Recent News Section */}
       {recentPosts.length > 0 && (
-        <section ref={newsRef} className="py-20 bg-surface-subtle scroll-reveal">
+        <section ref={newsRef} className="py-20 bg-background scroll-reveal">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("home.recentNews.title")}</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">{t("home.recentNews.title")}</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("home.recentNews.subtitle")}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {recentPosts.map((post) => (
                 <Link key={post.id} to={`/news/${post.slug}`}>
-                  <Card className="h-full bg-card border hover:shadow-lg transition-all duration-300 hover-scale group overflow-hidden">
+                  <Card className="h-full bg-card border-2 shadow-md hover:shadow-xl transition-all duration-300 hover-scale group overflow-hidden">
                     {post.cover_image && (
-                      <div className="overflow-hidden h-48">
+                      <div className="w-full h-48 overflow-hidden">
                         <img
                           src={post.cover_image}
                           alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                         />
                       </div>
                     )}
@@ -306,10 +306,10 @@ const Home = () => {
                         <Calendar className="h-4 w-4" />
                         {format(new Date(post.published_at), "MMM d, yyyy")}
                       </div>
-                      <CardTitle className="group-hover:text-primary transition-colors line-clamp-2">
+                      <CardTitle className="text-card-foreground group-hover:text-primary transition-colors line-clamp-2">
                         {post.title}
                       </CardTitle>
-                      {post.excerpt && <CardDescription className="line-clamp-3">{post.excerpt}</CardDescription>}
+                      {post.excerpt && <CardDescription className="line-clamp-3 text-muted-foreground">{post.excerpt}</CardDescription>}
                     </CardHeader>
                     <CardContent>
                       <span className="text-primary story-link text-sm font-medium">
