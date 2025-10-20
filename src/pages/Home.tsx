@@ -281,7 +281,7 @@ const Home = () => {
 
       {/* Recent News Section */}
       {recentPosts.length > 0 && (
-        <section ref={newsRef} className="py-20 bg-background scroll-reveal">
+        <section ref={newsRef} className="py-20 bg-surface-subtle scroll-reveal">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">{t("home.recentNews.title")}</h2>
