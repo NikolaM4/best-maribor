@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./components/ThemeProvider";
-import { Dock } from "./components/reactbits/Dock";
+import { StaggeredMenu } from "./components/reactbits/StaggeredMenu";
 import { Home, Users, Calendar, Mail, UserPlus, Book } from "lucide-react";
 import { Footer } from "./components/Footer";
 import HomePage from "./pages/Home";
@@ -66,7 +66,7 @@ const App = () => (
                 </Routes>
               </main>
               <Footer />
-              <Dock items={dockItems} />
+              <StaggeredMenu items={dockItems} />
             </div>
           </BrowserRouter>
         </TooltipProvider>

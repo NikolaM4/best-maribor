@@ -278,38 +278,43 @@ const Home = () => {
 
       {/* Recent News Section */}
       {recentPosts.length > 0 && (
-        <section ref={newsRef} className="py-20 bg-surface-subtle scroll-reveal">
+        <section ref={newsRef} className="py-20 bg-background scroll-reveal">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">{t("home.recentNews.title")}</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("home.recentNews.title")}</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("home.recentNews.subtitle")}</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               {recentPosts.map((post) => (
-                <Link key={post.id} to={`/news/${post.slug}`}>
-                  <SpotlightCard className="h-full">
+                <Link key={post.id} to={`/news/${post.slug}`} className="group">
+                  <SpotlightCard className="h-full overflow-hidden">
                     {post.cover_image && (
-                      <div className="w-full h-48 overflow-hidden rounded-lg mb-4">
+                      <div className="w-full h-56 overflow-hidden rounded-t-lg mb-4">
                         <img
                           src={post.cover_image}
                           alt={post.title}
-                          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>
                     )}
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                      <Calendar className="h-4 w-4" />
-                      {format(new Date(post.published_at), "MMM d, yyyy")}
-                    </div>
-                    <h3 className="text-xl font-bold mb-2 hover:text-primary transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    {post.excerpt && <p className="text-sm text-muted-foreground line-clamp-3">{post.excerpt}</p>}
-                    <div className="mt-4">
-                      <span className="text-primary story-link text-sm font-medium">
-                        {t("home.recentNews.readMore")} →
-                      </span>
+                    <div className="p-6">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                        <Calendar className="h-4 w-4" />
+                        <span>{format(new Date(post.published_at), "MMM d, yyyy")}</span>
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+                      {post.excerpt && (
+                        <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
+                          {post.excerpt}
+                        </p>
+                      )}
+                      <div className="flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
+                        <span>{t("home.recentNews.readMore")}</span>
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </SpotlightCard>
                 </Link>
@@ -318,8 +323,9 @@ const Home = () => {
 
             <div className="text-center">
               <Link to="/news">
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" className="group">
                   {t("home.recentNews.viewAll")}
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
             </div>

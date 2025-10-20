@@ -1,5 +1,5 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Linkedin, Mail } from 'lucide-react';
+import { ChromaGrid } from './reactbits/ChromaGrid';
 
 interface TeamMember {
   name: string;
@@ -65,49 +65,15 @@ const TeamSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {teamMembers.map((member, index) => (
-            <Card key={index} className="hover-scale overflow-hidden">
-              <div className="overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle>{member.name}</CardTitle>
-                <CardDescription className="text-primary font-semibold">
-                  {member.role}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex gap-3">
-                  {member.email && (
-                    <a
-                      href={`mailto:${member.email}`}
-                      className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
-                      aria-label={`Email ${member.name}`}
-                    >
-                      <Mail className="h-4 w-4 text-primary" />
-                    </a>
-                  )}
-                  {member.linkedin && (
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-secondary/10 hover:bg-secondary/20 transition-colors"
-                      aria-label={`${member.name} LinkedIn`}
-                    >
-                      <Linkedin className="h-4 w-4 text-secondary" />
-                    </a>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <ChromaGrid
+          items={teamMembers.map((member) => ({
+            name: member.name,
+            role: member.role,
+            image: member.image,
+            email: member.email,
+            linkedin: member.linkedin,
+          }))}
+        />
       </div>
     </section>
   );
