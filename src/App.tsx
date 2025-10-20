@@ -30,7 +30,18 @@ const queryClient = new QueryClient();
 const dockItems = [
   { title: "Home", icon: Home, href: "/" },
   { title: "Team", icon: Users, href: "/team" },
-  { title: "Events", icon: Calendar, href: "/events/courses" },
+  { 
+    title: "Events", 
+    icon: Calendar, 
+    subItems: [
+      { title: "Courses", href: "/events/courses" },
+      { title: "BSE", href: "/events/bse" },
+      { title: "Technical Days", href: "/events/technical-days" },
+      { title: "Hackathons", href: "/events/hackathons" },
+      { title: "Other Events", href: "/events/other" },
+      { title: "Gallery", href: "/events/gallery" },
+    ]
+  },
   { title: "News", icon: Book, href: "/news" },
   { title: "Contact", icon: Mail, href: "/contact" },
   { title: "Join", icon: UserPlus, href: "/become-member" },

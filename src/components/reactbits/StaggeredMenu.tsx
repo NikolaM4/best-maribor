@@ -1,13 +1,24 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { LucideIcon, X } from "lucide-react";
+import { LucideIcon, X, ChevronDown } from "lucide-react";
 import { useState, useRef } from "react";
 import { useClickAway } from "react-use";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
+interface SubMenuItem {
+  title: string;
+  href: string;
+}
 
 interface MenuItem {
   title: string;
   icon: LucideIcon;
-  href: string;
+  href?: string;
+  subItems?: SubMenuItem[];
 }
 
 interface StaggeredMenuProps {
@@ -104,35 +115,85 @@ export const StaggeredMenu = ({ items }: StaggeredMenuProps) => {
           >
             {items.map((item, index) => {
               const Icon = item.icon;
-              const isActive = location.pathname === item.href;
+              const isActive = item.href ? location.pathname === item.href : item.subItems?.some(sub => location.pathname === sub.href);
               
               return (
-                <motion.div key={item.href} variants={itemVariants}>
-                  <Link
-                    to={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`group flex items-center gap-6 p-4 rounded-2xl transition-all ${
-                      isActive
-                        ? "bg-primary text-primary-foreground"
-                        : "hover:bg-accent/10"
-                    }`}
-                  >
-                    <div
-                      className={`flex items-center justify-center w-12 h-12 rounded-xl ${
+                <motion.div key={item.title} variants={itemVariants}>
+                  {item.subItems ? (
+                    <Collapsible>
+                      <CollapsibleTrigger className="w-full">
+                        <div
+                          className={`group flex items-center gap-6 p-4 rounded-2xl transition-all ${
+                            isActive
+                              ? "bg-primary text-primary-foreground"
+                              : "hover:bg-accent/10"
+                          }`}
+                        >
+                          <div
+                            className={`flex items-center justify-center w-12 h-12 rounded-xl ${
+                              isActive
+                                ? "bg-primary-foreground/20"
+                                : "bg-accent/20 group-hover:bg-primary/20"
+                            } transition-colors`}
+                          >
+                            <Icon className="h-6 w-6" />
+                          </div>
+                          <div className="flex flex-col flex-1 text-left">
+                            <span className="text-2xl font-semibold">{item.title}</span>
+                            <span className="text-xs text-muted-foreground">
+                              {String(index + 1).padStart(2, "0")}
+                            </span>
+                          </div>
+                          <ChevronDown className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                        </div>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="pl-[72px] mt-2 space-y-2">
+                        {item.subItems.map((subItem) => {
+                          const isSubActive = location.pathname === subItem.href;
+                          return (
+                            <Link
+                              key={subItem.href}
+                              to={subItem.href}
+                              onClick={() => setIsOpen(false)}
+                              className={`block p-3 rounded-lg transition-all ${
+                                isSubActive
+                                  ? "bg-primary/20 text-primary font-medium"
+                                  : "hover:bg-accent/10"
+                              }`}
+                            >
+                              {subItem.title}
+                            </Link>
+                          );
+                        })}
+                      </CollapsibleContent>
+                    </Collapsible>
+                  ) : (
+                    <Link
+                      to={item.href!}
+                      onClick={() => setIsOpen(false)}
+                      className={`group flex items-center gap-6 p-4 rounded-2xl transition-all ${
                         isActive
-                          ? "bg-primary-foreground/20"
-                          : "bg-accent/20 group-hover:bg-primary/20"
-                      } transition-colors`}
+                          ? "bg-primary text-primary-foreground"
+                          : "hover:bg-accent/10"
+                      }`}
                     >
-                      <Icon className="h-6 w-6" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-2xl font-semibold">{item.title}</span>
-                      <span className="text-xs text-muted-foreground">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                  </Link>
+                      <div
+                        className={`flex items-center justify-center w-12 h-12 rounded-xl ${
+                          isActive
+                            ? "bg-primary-foreground/20"
+                            : "bg-accent/20 group-hover:bg-primary/20"
+                        } transition-colors`}
+                      >
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-2xl font-semibold">{item.title}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                    </Link>
+                  )}
                 </motion.div>
               );
             })}
