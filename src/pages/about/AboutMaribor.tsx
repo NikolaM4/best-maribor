@@ -1,13 +1,12 @@
-import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { AnimatedHero } from '@/components/reactbits/AnimatedHero';
-import { MagicBento } from '@/components/reactbits/MagicBento';
-import { ChromaGrid } from '@/components/reactbits/ChromaGrid';
-import { Calendar, Briefcase, Code, Users, Heart, Sparkles } from 'lucide-react';
-import mariborHero from '@/assets/maribor-hero.jpg';
+import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { AnimatedHero } from '@/components/reactbits/AnimatedHero'
+import { ChromaGrid } from '@/components/reactbits/ChromaGrid'
+import { Calendar, Briefcase, Code, Users, Heart, Sparkles } from 'lucide-react'
+import mariborHero from '@/assets/maribor-hero.jpg'
 
 const AboutMaribor = () => {
-  const contentRef = useScrollReveal();
-  
+  const contentRef = useScrollReveal()
+
   const whatWeDo = [
     {
       title: 'Academic Courses',
@@ -39,7 +38,7 @@ const AboutMaribor = () => {
       description: 'Participate in BEST events across Europe and meet new people',
       icon: Calendar,
     },
-  ];
+  ]
 
   const teamMembers = [
     {
@@ -84,17 +83,15 @@ const AboutMaribor = () => {
       email: 'marketing@best-maribor.org',
       linkedin: '#',
     },
-  ];
-  
+  ]
+
   return (
     <div className="min-h-screen">
       <AnimatedHero className="py-20 md:py-32">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">About BEST Maribor</h1>
-            <p className="text-lg md:text-xl text-muted-foreground">
-              Your gateway to personal growth, international connections, and career opportunities in Slovenia
-            </p>
+            <p className="text-lg md:text-xl text-muted-foreground">Your gateway to personal growth, international connections, and career opportunities in Slovenia</p>
           </div>
         </div>
       </AnimatedHero>
@@ -106,21 +103,16 @@ const AboutMaribor = () => {
               <div>
                 <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
                 <p className="text-lg text-muted-foreground mb-4">
-                  BEST Maribor is the local group representing the University of Maribor in the BEST network. 
-                  We are a student organization dedicated to connecting students with companies and providing 
-                  opportunities for personal and professional development.
+                  BEST Maribor is the local group representing the University of Maribor in the BEST network. We are a student organization dedicated to connecting students with
+                  companies and providing opportunities for personal and professional development.
                 </p>
                 <p className="text-lg text-muted-foreground">
-                  Run entirely by students who volunteer their time, we organize events, build corporate 
-                  relationships, and create opportunities that make a real difference in the student community.
+                  Run entirely by students who volunteer their time, we organize events, build corporate relationships, and create opportunities that make a real difference in the
+                  student community.
                 </p>
               </div>
               <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={mariborHero}
-                  alt="BEST Maribor"
-                  className="w-full h-full object-cover"
-                />
+                <img src={mariborHero} alt="BEST Maribor" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -131,11 +123,8 @@ const AboutMaribor = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Do</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              From technical courses to international exchanges, we provide diverse opportunities for growth
-            </p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">From technical courses to international exchanges, we provide diverse opportunities for growth</p>
           </div>
-          <MagicBento items={whatWeDo} className="max-w-6xl mx-auto" />
         </div>
       </section>
 
@@ -143,15 +132,13 @@ const AboutMaribor = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              The dedicated students who make BEST Maribor possible
-            </p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">The dedicated students who make BEST Maribor possible</p>
           </div>
           <ChromaGrid items={teamMembers} />
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default AboutMaribor;
+export default AboutMaribor

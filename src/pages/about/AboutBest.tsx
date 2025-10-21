@@ -1,12 +1,11 @@
-import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { AnimatedHero } from '@/components/reactbits/AnimatedHero';
-import { MagicBento } from '@/components/reactbits/MagicBento';
-import { ChromaGrid } from '@/components/reactbits/ChromaGrid';
-import { Users, Globe, GraduationCap, Rocket, Lightbulb, Trophy } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { AnimatedHero } from '@/components/reactbits/AnimatedHero'
+import { ChromaGrid } from '@/components/reactbits/ChromaGrid'
+import { Users, Globe, GraduationCap, Rocket, Lightbulb, Trophy } from 'lucide-react'
 
 const AboutBest = () => {
-  const contentRef = useScrollReveal();
-  
+  const contentRef = useScrollReveal()
+
   const benefits = [
     {
       title: 'International Network',
@@ -38,7 +37,7 @@ const AboutBest = () => {
       description: 'Gain certificates and recognition for your contributions',
       icon: Trophy,
     },
-  ];
+  ]
 
   const teamMembers = [
     {
@@ -56,8 +55,8 @@ const AboutBest = () => {
       role: '3000+ Active Students',
       image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop',
     },
-  ];
-  
+  ]
+
   return (
     <div className="min-h-screen">
       <AnimatedHero className="py-20 md:py-32">
@@ -77,23 +76,19 @@ const AboutBest = () => {
             <div>
               <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
               <p className="text-lg text-muted-foreground">
-                BEST strives to help European students of technology to become more internationally minded, by reaching a
-                better understanding of European cultures and developing capacities to work on an international basis.
+                BEST strives to help European students of technology to become more internationally minded, by reaching a better understanding of European cultures and developing
+                capacities to work on an international basis.
               </p>
             </div>
 
             <div>
               <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
-              <p className="text-lg text-muted-foreground">
-                A society full of internationally minded students in engineering and technology ready to make a difference.
-              </p>
+              <p className="text-lg text-muted-foreground">A society full of internationally minded students in engineering and technology ready to make a difference.</p>
             </div>
 
             <div>
               <h2 className="text-3xl font-bold mb-4">Our Network</h2>
-              <p className="text-lg text-muted-foreground">
-                BEST consists of 84 Local BEST Groups (LBGs) in 33 countries, connecting over 3,000 students across Europe.
-              </p>
+              <p className="text-lg text-muted-foreground">BEST consists of 84 Local BEST Groups (LBGs) in 33 countries, connecting over 3,000 students across Europe.</p>
             </div>
           </div>
         </div>
@@ -103,11 +98,8 @@ const AboutBest = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Join BEST?</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover the amazing benefits of being part of Europe's largest technology student network
-            </p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Discover the amazing benefits of being part of Europe's largest technology student network</p>
           </div>
-          <MagicBento items={benefits} className="max-w-6xl mx-auto" />
         </div>
       </section>
 
@@ -115,15 +107,13 @@ const AboutBest = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Network</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Connecting students across Europe
-            </p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Connecting students across Europe</p>
           </div>
           <ChromaGrid items={teamMembers} />
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default AboutBest;
+export default AboutBest
