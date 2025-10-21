@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./components/ThemeProvider";
-import { StaggeredMenu } from "./components/reactbits/StaggeredMenu";
+import { Navigation } from "./components/Navigation";
 
 import { Footer } from "./components/Footer";
 import HomePage from "./pages/Home";
@@ -27,32 +27,6 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const dockItems = [
-  { title: "Home", href: "/" },
-  { 
-    title: "About", 
-    subItems: [
-      { title: "About BEST", href: "/about/best" },
-      { title: "About Maribor", href: "/about/maribor" },
-    ]
-  },
-  { 
-    title: "Events", 
-    subItems: [
-      { title: "Courses", href: "/events/courses" },
-      { title: "BSE", href: "/events/bse" },
-      { title: "Technical Days", href: "/events/technical-days" },
-      { title: "Hackathons", href: "/events/hackathons" },
-      { title: "Other Events", href: "/events/other" },
-      { title: "Gallery", href: "/events/gallery" },
-    ]
-  },
-  { title: "News", href: "/news" },
-  { title: "Contact", href: "/contact" },
-  { title: "Become Member", href: "/become-member", isCTA: true },
-  { title: "Beginners Guide", href: "/beginners-guide", isCTA: true },
-];
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="light">
@@ -62,6 +36,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <div className="flex min-h-screen flex-col">
+              <Navigation />
               <main className="flex-1">
                 <Routes>
                   <Route path="/" element={<HomePage />} />
@@ -83,7 +58,6 @@ const App = () => (
                 </Routes>
               </main>
               <Footer />
-              <StaggeredMenu items={dockItems} />
             </div>
           </BrowserRouter>
         </TooltipProvider>
