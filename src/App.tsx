@@ -55,7 +55,7 @@ const dockItems = [
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="dark">
+    <ThemeProvider defaultTheme="light">
       <LanguageProvider>
         <TooltipProvider>
           <Toaster />
