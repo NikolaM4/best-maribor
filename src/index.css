@@ -9,46 +9,46 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 222 47% 11%;
     
-    /* Purple as primary with BEST Blue accent */
-    --primary: 270 70% 50%;
+    /* BEST Purple - more vibrant and modern */
+    --primary: 262 83% 58%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 270 70% 45%;
+    --primary-hover: 262 83% 52%;
     
-    /* BEST Blue as secondary */
+    /* BEST Blue - bright and professional */
     --secondary: 211 100% 50%;
     --secondary-foreground: 0 0% 100%;
     --secondary-hover: 211 100% 45%;
 
-    /* BEST Orange as accent */
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    /* BEST Orange as accent - energetic */
+    --accent: 24 95% 53%;
+    --accent-foreground: 0 0% 100%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 220 13% 95%;
+    --muted-foreground: 220 9% 46%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 270 70% 50%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262 83% 58%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(270 70% 50%), hsl(211 100% 50%));
-    --gradient-accent: linear-gradient(135deg, hsl(270 70% 50%), hsl(14 90% 55%));
-    --gradient-soft: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(240, 4.8%, 98%) 100%);
+    /* Modern gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(211 100% 50%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(24 95% 53%) 100%);
+    --gradient-soft: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 13% 98%) 100%);
     
-    /* Subtle backgrounds */
-    --surface-elevated: 0 0% 98%;
-    --surface-subtle: 240 4.8% 98%;
+    /* Clean backgrounds */
+    --surface-elevated: 0 0% 99%;
+    --surface-subtle: 220 13% 98%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -64,40 +64,40 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 222 47% 11%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 222 47% 11%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 5.9% 10%;
+    --popover: 217 33% 17%;
     --popover-foreground: 0 0% 98%;
     
-    --primary: 270 70% 60%;
+    --primary: 262 83% 65%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 270 70% 55%;
+    --primary-hover: 262 83% 58%;
 
-    --secondary: 211 100% 60%;
+    --secondary: 211 100% 55%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-hover: 211 100% 55%;
+    --secondary-hover: 211 100% 50%;
 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 24 95% 58%;
+    --accent-foreground: 0 0% 100%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 270 70% 60%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 262 83% 65%;
     
-    --gradient-hero: linear-gradient(135deg, hsl(270 70% 60%), hsl(211 100% 60%));
-    --gradient-accent: linear-gradient(135deg, hsl(270 70% 60%), hsl(14 90% 60%));
-    --gradient-soft: linear-gradient(180deg, hsl(240, 10%, 3.9%) 0%, hsl(240, 3.7%, 15.9%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(262 83% 65%) 0%, hsl(211 100% 55%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(262 83% 65%) 0%, hsl(24 95% 58%) 100%);
+    --gradient-soft: linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(217 33% 17%) 100%);
     
-    --surface-elevated: 240 5.9% 10%;
-    --surface-subtle: 240 3.7% 8%;
+    --surface-elevated: 217 33% 17%;
+    --surface-subtle: 217 33% 14%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
