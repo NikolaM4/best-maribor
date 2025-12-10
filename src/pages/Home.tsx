@@ -167,7 +167,7 @@ const Home = () => {
       </AnimatedHero>
 
       {/* About Us with Glass Surface */}
-      <section ref={aboutRef} className="py-16 bg-background scroll-reveal">
+      <section ref={aboutRef} className="py-16 bg-gradient-to-b from-background to-surface-subtle scroll-reveal">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <GlassSurface>
@@ -228,7 +228,7 @@ const Home = () => {
       </section>
 
       {/* What We Do - Scroll Stack */}
-      <section className="py-20 bg-surface-subtle">
+      <section className="py-20 bg-gradient-to-br from-primary/5 via-surface-subtle to-secondary/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.whatWeDo.title')}</h2>
@@ -251,7 +251,7 @@ const Home = () => {
       <TeamSection />
 
       {/* Events - Flowing Menu */}
-      <section className="py-20 bg-background ">
+      <section className="py-20 bg-gradient-to-b from-surface-subtle to-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Events</h2>
@@ -263,7 +263,7 @@ const Home = () => {
 
       {/* Recent News Section */}
       {recentPosts.length > 0 && (
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-gradient-to-br from-accent/5 via-background to-primary/5">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.recentNews.title')}</h2>
@@ -313,7 +313,7 @@ const Home = () => {
       )}
 
       {/* Why Join - Magic Bento */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-gradient-to-b from-background via-secondary/5 to-surface-subtle">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.whyJoin.title')}</h2>
