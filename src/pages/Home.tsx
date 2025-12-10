@@ -20,7 +20,7 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 import courseCoding from '@/assets/course-coding.jpg'
 import courseEnergy from '@/assets/course-energy.jpg'
 import courseRobotics from '@/assets/course-robotics.jpg'
-import mariborSquare from '@/assets/maribor-square.png'
+import mariborSquare from '@/assets/maribor-square.jpg'
 import MagicBento from '@/components/reactbits/MagicBento'
 
 interface BlogPost {
