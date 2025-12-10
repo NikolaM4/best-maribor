@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ThemeToggle } from './ThemeToggle';
-
+import bestLogo from '@/assets/best-logo.png';
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
@@ -20,10 +20,8 @@ export const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              BEST Maribor
-            </div>
+          <Link to="/" className="flex items-center">
+            <img src={bestLogo} alt="BEST Maribor" className="h-10" />
           </Link>
 
           {/* Desktop Navigation */}
