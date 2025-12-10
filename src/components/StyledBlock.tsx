@@ -1,40 +1,36 @@
-import { ReactNode } from 'react';
-import { cn } from '@/lib/utils';
+import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 interface StyledBlockProps {
   children: ReactNode;
   className?: string;
-  variant?: 'primary' | 'secondary' | 'accent';
+  variant?: "primary" | "secondary" | "accent";
   backgroundImage?: string;
 }
 
-const StyledBlock = ({ children, className, variant = 'primary', backgroundImage }: StyledBlockProps) => {
+const StyledBlock = ({ children, className, variant = "primary", backgroundImage }: StyledBlockProps) => {
   const variants = {
-    primary: 'bg-[#1a1f3c]',
-    secondary: 'bg-[#0f172a]',
-    accent: 'bg-gradient-to-br from-[#1e1b4b] to-[#0f172a]',
+    primary: "bg-[#1a1f3c]",
+    secondary: "bg-[#0f172a]",
+    accent: "bg-gradient-to-br from-[#1e1b4b] to-[#0f172a]",
   };
 
   return (
     <div
       className={cn(
-        'relative rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden',
+        "relative rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden",
         !backgroundImage && variants[variant],
-        className
+        className,
       )}
     >
       {/* Background image with dark overlay */}
       {backgroundImage && (
         <>
-          <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
-          />
-          <div className="absolute inset-0 bg-black/35 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }} />
+          <div className="absolute inset-0 bg-black/45 backdrop-blur-[1px]" />
         </>
       )}
-      
-      
+
       <div className="relative z-20">{children}</div>
     </div>
   );
