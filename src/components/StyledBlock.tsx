@@ -30,7 +30,7 @@ const StyledBlock = ({ children, className, variant = 'primary', backgroundImage
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${backgroundImage})` }}
           />
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
         </>
       )}
       
