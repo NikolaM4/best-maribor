@@ -9,7 +9,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { ThemeToggle } from './ThemeToggle';
 import bestLogo from '@/assets/best-logo.png';
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -115,8 +114,6 @@ export const Navigation = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Theme Toggle */}
-            <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
@@ -137,7 +134,6 @@ export const Navigation = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <ThemeToggle />
             <Button
               variant="ghost"
               size="sm"

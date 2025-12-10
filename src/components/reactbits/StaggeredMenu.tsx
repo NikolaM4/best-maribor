@@ -1,9 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { LucideIcon, X, ChevronDown, Facebook, Instagram, Linkedin, Moon, Sun, Globe } from "lucide-react";
+import { LucideIcon, X, ChevronDown, Facebook, Instagram, Linkedin, Globe } from "lucide-react";
 import { useState, useRef } from "react";
 import { useClickAway } from "react-use";
-import { useTheme } from "@/components/ThemeProvider";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Collapsible,
@@ -33,7 +32,6 @@ export const StaggeredMenu = ({ items }: StaggeredMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
   const location = useLocation();
-  const { theme, setTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
 
   useClickAway(ref, () => setIsOpen(false));
@@ -198,24 +196,6 @@ export const StaggeredMenu = ({ items }: StaggeredMenuProps) => {
             className="mt-auto pt-6 space-y-4"
           >
             <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                className="flex items-center gap-2"
-              >
-                {theme === "light" ? (
-                  <>
-                    <Moon className="h-4 w-4" />
-                    <span>Dark</span>
-                  </>
-                ) : (
-                  <>
-                    <Sun className="h-4 w-4" />
-                    <span>Light</span>
-                  </>
-                )}
-              </Button>
               <Button
                 variant="outline"
                 size="sm"
