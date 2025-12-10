@@ -36,7 +36,6 @@ const Home = () => {
 
   const aboutRef = useScrollReveal()
   const statsRef = useScrollReveal()
-  const newsRef = useScrollReveal()
 
   useEffect(() => {
     fetchRecentPosts()
@@ -264,7 +263,7 @@ const Home = () => {
 
       {/* Recent News Section */}
       {recentPosts.length > 0 && (
-        <section ref={newsRef} className="py-20 bg-background">
+        <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.recentNews.title')}</h2>
@@ -275,8 +274,14 @@ const Home = () => {
               {recentPosts.map((post) => (
                 <Link key={post.id} to={`/news/${post.slug}`} className="group">
                   <SpotlightCard className="h-full overflow-hidden">
-                    <div className="w-full h-56 overflow-hidden rounded-t-lg mb-4">
-                      <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="w-full h-56 overflow-hidden rounded-t-lg mb-4 bg-muted">
+                      {post.cover_image ? (
+                        <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
+                          <Sparkles className="h-12 w-12 text-primary/50" />
+                        </div>
+                      )}
                     </div>
                     <div>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
