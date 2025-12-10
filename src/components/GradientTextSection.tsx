@@ -39,7 +39,7 @@ const GradientTextSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-40 md:py-56 overflow-hidden bg-gradient-to-br from-purple-900 via-black to-purple-950"
+      className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-purple-900 via-black to-purple-950"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(139,92,246,0.15),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(168,85,247,0.15),transparent_50%)]" />
