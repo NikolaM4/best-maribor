@@ -5,9 +5,10 @@ interface StyledBlockProps {
   children: ReactNode;
   className?: string;
   variant?: 'primary' | 'secondary' | 'accent';
+  backgroundImage?: string;
 }
 
-const StyledBlock = ({ children, className, variant = 'primary' }: StyledBlockProps) => {
+const StyledBlock = ({ children, className, variant = 'primary', backgroundImage }: StyledBlockProps) => {
   const variants = {
     primary: 'bg-[#1a1f3c]',
     secondary: 'bg-[#0f172a]',
@@ -18,12 +19,23 @@ const StyledBlock = ({ children, className, variant = 'primary' }: StyledBlockPr
     <div
       className={cn(
         'relative rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden',
-        variants[variant],
+        !backgroundImage && variants[variant],
         className
       )}
     >
+      {/* Background image with dark overlay */}
+      {backgroundImage && (
+        <>
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${backgroundImage})` }}
+          />
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
+        </>
+      )}
+      
       {/* Decorative dots pattern */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 opacity-20 pointer-events-none z-10">
         <div className="absolute top-8 left-8 grid grid-cols-6 gap-3">
           {Array.from({ length: 24 }).map((_, i) => (
             <div key={i} className="w-1.5 h-1.5 rounded-full bg-white/40" />
@@ -36,7 +48,7 @@ const StyledBlock = ({ children, className, variant = 'primary' }: StyledBlockPr
         </div>
       </div>
       
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-20">{children}</div>
     </div>
   );
 };

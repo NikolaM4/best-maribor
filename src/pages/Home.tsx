@@ -20,6 +20,7 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 import courseCoding from '@/assets/course-coding.jpg'
 import courseEnergy from '@/assets/course-energy.jpg'
 import courseRobotics from '@/assets/course-robotics.jpg'
+import mariborSquare from '@/assets/maribor-square.png'
 import MagicBento from '@/components/reactbits/MagicBento'
 
 interface BlogPost {
@@ -170,7 +171,7 @@ const Home = () => {
       {/* About Us Section */}
       <section ref={aboutRef} className="py-16 scroll-reveal">
         <div className="container mx-auto px-4">
-          <StyledBlock variant="primary">
+          <StyledBlock backgroundImage={mariborSquare}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <p className="text-primary font-medium mb-2 uppercase tracking-wider text-sm">About Us</p>
