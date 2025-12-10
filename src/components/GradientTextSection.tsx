@@ -12,8 +12,15 @@ const GradientTextSection = () => {
     if (!containerRef.current || !sectionRef.current) return;
 
     const letters = containerRef.current.querySelectorAll('.letter');
+    
+    // Kill any existing ScrollTrigger instances for this element
+    ScrollTrigger.getAll().forEach(trigger => {
+      if (trigger.vars.trigger === sectionRef.current) {
+        trigger.kill();
+      }
+    });
 
-    gsap.fromTo(
+    const animation = gsap.fromTo(
       letters,
       {
         opacity: 0.3,
@@ -26,12 +33,16 @@ const GradientTextSection = () => {
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 60%',
-          end: 'bottom 20%',
-          scrub: 1,
+          start: 'top 80%',
+          end: 'top 20%',
+          scrub: 0.5,
         },
       }
     );
+
+    return () => {
+      animation.scrollTrigger?.kill();
+    };
   }, []);
 
   const text = "Were you ever interested in technology, innovation, and building connections across Europe? Do you dream of developing your skills through hands-on projects, meeting industry professionals, and traveling to international events? Are you passionate about making a difference in the student community while growing as a leader? Then you are in the right place. BEST offers you the platform to transform your university experience into something extraordinary.";
