@@ -23,7 +23,6 @@ const News = () => {
   const { language } = useLanguage();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
-  const heroRef = useScrollReveal();
 
   useEffect(() => {
     fetchPosts();
@@ -73,7 +72,7 @@ const News = () => {
       <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary/10 via-secondary/5 to-background overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(120,119,198,0.1),transparent_50%)]" />
         <div className="container mx-auto px-4 relative">
-          <div ref={heroRef} className="scroll-reveal text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               News & Blog
             </h1>
