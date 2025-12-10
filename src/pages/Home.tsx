@@ -15,6 +15,7 @@ import GradientTextSection from '@/components/GradientTextSection'
 import PartnersCarousel from '@/components/PartnersCarousel'
 import EventGallery from '@/components/EventGallery'
 import TeamSection from '@/components/TeamSection'
+import StyledBlock from '@/components/StyledBlock'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import courseCoding from '@/assets/course-coding.jpg'
 import courseEnergy from '@/assets/course-energy.jpg'
@@ -166,64 +167,74 @@ const Home = () => {
         </div>
       </AnimatedHero>
 
-      {/* About Us with Glass Surface */}
-      <section ref={aboutRef} className="py-16 bg-gradient-to-b from-background to-surface-subtle scroll-reveal">
+      {/* About Us Section */}
+      <section ref={aboutRef} className="py-16 scroll-reveal">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <GlassSurface>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('home.about.title')}</h2>
-              <p className="text-lg text-muted-foreground mb-4">{t('home.about.p1')}</p>
-              <p className="text-lg text-muted-foreground mb-6">{t('home.about.p2')}</p>
-              <Link to="/about/best">
-                <Button size="lg" className="group">
-                  {t('home.about.learnMore')}
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-            </GlassSurface>
-
-            <div ref={statsRef} className="grid grid-cols-2 gap-4 scroll-reveal-scale">
-              <SpotlightCard>
-                <div className="text-center">
-                  <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                    <Users className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="text-3xl font-bold mb-1">3000+</div>
-                  <div className="text-sm text-muted-foreground">{t('home.stats.members')}</div>
+          <StyledBlock variant="primary">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <p className="text-primary font-medium mb-2 uppercase tracking-wider text-sm">About Us</p>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">{t('home.about.title')}</h2>
+                <p className="text-lg text-gray-300 mb-4">{t('home.about.p1')}</p>
+                <p className="text-lg text-gray-300 mb-6">{t('home.about.p2')}</p>
+                <div className="flex flex-wrap gap-4">
+                  <Link to="/about/best">
+                    <Button size="lg" className="group">
+                      {t('home.about.learnMore')}
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                  <Link to="/become-member">
+                    <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                      Join Now
+                    </Button>
+                  </Link>
                 </div>
-              </SpotlightCard>
+              </div>
 
-              <SpotlightCard spotlightColor="rgba(14, 165, 233, 0.3)">
-                <div className="text-center">
-                  <div className="mx-auto w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-2">
-                    <Globe className="h-6 w-6 text-secondary" />
+              <div ref={statsRef} className="grid grid-cols-2 gap-4 scroll-reveal-scale">
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                  <div className="text-center">
+                    <div className="mx-auto w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-2">
+                      <Users className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="text-3xl font-bold mb-1 text-white">3000+</div>
+                    <div className="text-sm text-gray-400">{t('home.stats.members')}</div>
                   </div>
-                  <div className="text-3xl font-bold mb-1">80+</div>
-                  <div className="text-sm text-muted-foreground">{t('home.stats.groups')}</div>
                 </div>
-              </SpotlightCard>
 
-              <SpotlightCard spotlightColor="rgba(249, 115, 22, 0.3)">
-                <div className="text-center">
-                  <div className="mx-auto w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-2">
-                    <MapPin className="h-6 w-6 text-accent" />
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                  <div className="text-center">
+                    <div className="mx-auto w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center mb-2">
+                      <Globe className="h-6 w-6 text-secondary" />
+                    </div>
+                    <div className="text-3xl font-bold mb-1 text-white">80+</div>
+                    <div className="text-sm text-gray-400">{t('home.stats.groups')}</div>
                   </div>
-                  <div className="text-3xl font-bold mb-1">33</div>
-                  <div className="text-sm text-muted-foreground">{t('home.stats.countries')}</div>
                 </div>
-              </SpotlightCard>
 
-              <SpotlightCard>
-                <div className="text-center">
-                  <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                    <GraduationCap className="h-6 w-6 text-primary" />
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                  <div className="text-center">
+                    <div className="mx-auto w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mb-2">
+                      <MapPin className="h-6 w-6 text-accent" />
+                    </div>
+                    <div className="text-3xl font-bold mb-1 text-white">33</div>
+                    <div className="text-sm text-gray-400">{t('home.stats.countries')}</div>
                   </div>
-                  <div className="text-3xl font-bold mb-1">35+</div>
-                  <div className="text-sm text-muted-foreground">{t('home.stats.years')}</div>
                 </div>
-              </SpotlightCard>
+
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                  <div className="text-center">
+                    <div className="mx-auto w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-2">
+                      <GraduationCap className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="text-3xl font-bold mb-1 text-white">35+</div>
+                    <div className="text-sm text-gray-400">{t('home.stats.years')}</div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </StyledBlock>
         </div>
       </section>
 
@@ -251,13 +262,16 @@ const Home = () => {
       <TeamSection />
 
       {/* Events - Flowing Menu */}
-      <section className="py-20 bg-gradient-to-b from-surface-subtle to-background">
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Events</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Discover the amazing opportunities we offer</p>
-          </div>
-          <FlowingMenu items={eventsMenuItems} />
+          <StyledBlock variant="accent">
+            <div className="text-center mb-12">
+              <p className="text-primary font-medium mb-2 uppercase tracking-wider text-sm">What We Offer</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Events</h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto">Discover the amazing opportunities we offer</p>
+            </div>
+            <FlowingMenu items={eventsMenuItems} />
+          </StyledBlock>
         </div>
       </section>
 
