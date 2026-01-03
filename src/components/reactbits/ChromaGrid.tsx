@@ -69,11 +69,13 @@ export const ChromaGrid = ({ items, className }: ChromaGridProps) => {
           )}
           
           <div className="relative z-10">
-            <div className="mb-4 overflow-hidden rounded-xl">
+            <div className="mb-4 overflow-hidden rounded-xl bg-muted">
               <img
                 src={item.image}
                 alt={item.name}
+                loading="eager"
                 className="aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                style={{ opacity: 1 }}
               />
             </div>
             <h3 className="mb-1 text-xl font-bold">{item.name}</h3>

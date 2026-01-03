@@ -29,29 +29,31 @@ const EventGallery = () => {
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={30}
           slidesPerView={3}
-          loop={true}
+          loop={false}
           navigation
           pagination={{ clickable: true }}
           autoplay={{
-            delay: 3000,
+            delay: 4000,
             disableOnInteraction: false,
           }}
-          speed={600}
-          cssMode={false}
+          speed={500}
           breakpoints={{
             320: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
           className="event-gallery-swiper pb-12"
+          style={{ opacity: 1 }}
         >
           {eventImages.map((image, index) => (
             <SwiperSlide key={index}>
-              <div className="rounded-xl overflow-hidden shadow-lg">
+              <div className="rounded-xl overflow-hidden shadow-lg bg-muted">
                 <img
                   src={image.url}
                   alt={image.alt}
+                  loading="eager"
                   className="w-full h-64 md:h-80 object-cover"
+                  style={{ opacity: 1 }}
                 />
               </div>
             </SwiperSlide>
