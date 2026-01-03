@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -16,31 +16,19 @@ interface ChromaGridProps {
 }
 
 export const ChromaGrid = ({ items, className }: ChromaGridProps) => {
-  const gridRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [cardMousePos, setCardMousePos] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (gridRef.current) {
-        const rect = gridRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
-        });
-      }
-    };
-
-    const grid = gridRef.current;
-    if (grid) {
-      grid.addEventListener("mousemove", handleMouseMove);
-      return () => grid.removeEventListener("mousemove", handleMouseMove);
-    }
-  }, []);
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setCardMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
   return (
     <div
-      ref={gridRef}
       className={cn(
         "relative grid gap-6 sm:grid-cols-2 lg:grid-cols-3",
         className
@@ -53,6 +41,7 @@ export const ChromaGrid = ({ items, className }: ChromaGridProps) => {
           whileHover={{ y: -4 }}
           transition={{ duration: 0.3 }}
           onMouseEnter={() => setHoveredIndex(idx)}
+          onMouseMove={handleCardMouseMove}
           onMouseLeave={() => setHoveredIndex(null)}
           className="group relative overflow-hidden rounded-2xl border border-primary/20 bg-surface-elevated p-6 shadow-lg transition-all hover:shadow-2xl"
         >
@@ -60,7 +49,7 @@ export const ChromaGrid = ({ items, className }: ChromaGridProps) => {
             <motion.div
               className="pointer-events-none absolute inset-0"
               style={{
-                background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(147, 51, 234, 0.15), transparent 40%)`,
+                background: `radial-gradient(300px circle at ${cardMousePos.x}px ${cardMousePos.y}px, rgba(147, 51, 234, 0.15), transparent 40%)`,
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
