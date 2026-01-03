@@ -36,7 +36,8 @@ const EventGallery = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          speed={800}
+          speed={600}
+          cssMode={false}
           breakpoints={{
             320: { slidesPerView: 1 },
             768: { slidesPerView: 2 },

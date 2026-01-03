@@ -30,11 +30,8 @@ export const MasonryGallery = ({ items, className }: MasonryGalleryProps) => {
       {items.map((item, idx) => (
         <motion.div
           key={idx}
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: idx * 0.05, duration: 0.5 }}
-          viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.3 }}
           className="group relative overflow-hidden rounded-xl cursor-pointer"
         >
           <img
