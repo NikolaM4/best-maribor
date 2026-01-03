@@ -49,10 +49,9 @@ export const ChromaGrid = ({ items, className }: ChromaGridProps) => {
       {items.map((item, idx) => (
         <motion.div
           key={idx}
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: idx * 0.1, duration: 0.5 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 1, scale: 1 }}
+          whileHover={{ y: -4 }}
+          transition={{ duration: 0.3 }}
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
           className="group relative overflow-hidden rounded-2xl border border-primary/20 bg-surface-elevated p-6 shadow-lg transition-all hover:shadow-2xl"
