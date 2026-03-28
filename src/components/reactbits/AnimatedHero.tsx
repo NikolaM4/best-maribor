@@ -9,7 +9,7 @@ interface AnimatedHeroProps {
 
 export const AnimatedHero = ({ children, className, backgroundImage }: AnimatedHeroProps) => {
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div className={cn("relative overflow-hidden min-h-[80vh]", className)}>
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         {backgroundImage ? (
