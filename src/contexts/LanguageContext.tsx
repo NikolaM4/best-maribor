@@ -116,8 +116,7 @@ const translations = {
     "home.hero.cta": "Pridruži se nam",
     "home.hero.learnMore": "Izvedi več",
     "home.about.title": "O BEST",
-    "home.about.p1":
-      "Smo dinamična študentska organizacija na Univerzi v Mariboru, del mreže BEST, ki povezuje več kot 3.000 študentov na 84 univerzah v 33 državah.",
+    "home.about.p1": "Smo",
     "home.about.p2":
       "S pomočjo akademskih tečajev, kariernih dogodkov in mednarodnih izmenjav pomagamo študentom razvijati tako tehnične kot mehke veščine ter graditi trajne povezave po Evropi.",
     "home.about.learnMore": "Več o BEST",
