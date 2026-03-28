@@ -176,8 +176,8 @@ const Home = () => {
               <div>
                 <p className="text-primary font-medium mb-2 uppercase tracking-wider text-sm">About Us</p>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">{t('home.about.title')}</h2>
-                <p className="text-lg text-gray-300 mb-4">{t('home.about.p1')}</p>
-                <p className="text-lg text-gray-300 mb-6">{t('home.about.p2')}</p>
+                <p className="text-lg mb-4 text-white">{t('home.about.p1')}</p>
+                <p className="text-lg mb-6 text-white">{t('home.about.p2')}</p>
                 <div className="flex flex-wrap gap-4">
                   <Link to="/about/best">
                     <Button size="lg" className="group">
