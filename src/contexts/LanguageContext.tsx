@@ -32,7 +32,7 @@ const translations = {
     "home.hero.subtitle": "Connecting students, companies, and universities across Europe",
     "home.hero.cta": "Join Us",
     "home.hero.learnMore": "Learn More",
-    "home.about.title": "About Board of European Students of Technology",
+    "home.about.title": "About BEST",
     "home.about.p1":
       "We are a dynamic student organization at the University of Maribor, part of the BEST network connecting over 3,000 students across 84 universities in 33 countries.",
     "home.about.p2":
@@ -116,7 +116,7 @@ const translations = {
     "home.hero.subtitle": "Povezujemo študente, podjetja in univerze po Evropi",
     "home.hero.cta": "Pridruži se nam",
     "home.hero.learnMore": "Izvedi več",
-    "home.about.title": "O Board of European Students of Technology",
+    "home.about.title": "O BEST",
     "home.about.p1":
       "Smo dinamična študentska organizacija na Univerzi v Mariboru, del mreže BEST, ki povezuje več kot 3.000 študentov na 84 univerzah v 33 državah.",
     "home.about.p2":
