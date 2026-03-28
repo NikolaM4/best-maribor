@@ -175,12 +175,12 @@ const Home = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 
-                <h2 className="text-3xl mb-6 text-white font-semibold px-px md:text-5xl">{t('home.about.title')}</h2>
-                <p className="text-lg mb-4 text-white font-medium text-justify">{t('home.about.p1')}</p>
-                <p className="text-lg mb-6 text-white font-medium text-justify">{t('home.about.p2')}</p>
+                <h2 className="text-3xl mb-6 md:text-5xl px-0 font-normal text-[#af8aef]">{t('home.about.title')}</h2>
+                <p className="text-lg mb-4 font-medium text-justify text-gray-100">{t('home.about.p1')}</p>
+                <p className="text-lg mb-6 font-medium text-justify text-gray-100">{t('home.about.p2')}</p>
                 <div className="flex flex-wrap gap-4">
                   <Link to="/about/best">
-                    <Button size="lg" className="group">
+                    <Button size="lg" className="group text-white">
                       {t('home.about.learnMore')}
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </Button>
