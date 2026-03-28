@@ -33,8 +33,7 @@ const translations = {
     "home.hero.cta": "Join Us",
     "home.hero.learnMore": "Learn More",
     "home.about.title": "About BEST",
-    "home.about.p1":
-      "We are a dynamic student organization at the University of Maribor, part of the BEST network connecting over 3,000 students across 84 universities in 33 countries.",
+    "home.about.p1": "We",
     "home.about.p2":
       "Through academic courses, career events, and international exchanges, we help students develop both technical and soft skills while building lasting connections across Europe.",
     "home.about.learnMore": "Learn More About BEST",
