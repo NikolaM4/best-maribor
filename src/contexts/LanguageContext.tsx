@@ -33,9 +33,9 @@ const translations = {
     "home.hero.cta": "Join Us",
     "home.hero.learnMore": "Learn More",
     "home.about.title": "About BEST",
-    "home.about.p1": "We",
+    "home.about.p1": "The Board of European Students of Technology is a voluntary, politically unaffiliated, non-profit organization run by students for students. As a network, we connect over 3,000 students across 84 universities in 33 countries.",
     "home.about.p2":
-      "Through academic courses, career events, and international exchanges, we help students develop both technical and soft skills while building lasting connections across Europe.",
+      "We focus on developing students through academic courses, career events, workshops and international exchanges. By organizing and participating in our events, students develop both technical and soft skills while building lasting connections across Europe. For our member students we provide oppurtunities to gain valuable experience in organization, leadership and communication.",
     "home.about.learnMore": "Learn More About BEST",
     "home.stats.members": "Active Members",
     "home.stats.groups": "Local Groups",
